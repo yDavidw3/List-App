@@ -1,0 +1,161 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body{
+    display: flex;
+    min-height: 100vh;
+    background-color: #f5eedd;
+}
+
+#sidebar{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #f5eedd;
+    border-right: 1px solid #6b6b6b;
+    height: 100vh;
+    width: 34vh;
+}
+
+#sidebar_content{
+    padding: 12px;
+}
+
+#user{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 24px;
+}
+
+#user_avatar{
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 30px;
+}
+
+#user_infos{
+    display: flex;
+    flex-direction: column;
+}
+
+#user_infos span:last-child{
+    color: #6b6b6b;
+    font-size: 12px;
+}
+
+#side_items{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    list-style-type: none;
+}
+
+.side-item{
+    border-radius: 8px;
+    padding: 10px;
+    cursor: pointer
+}
+
+.side-item.active{
+    background-color: #16587b;
+    color: #84b3ce;
+}
+
+.side-item:hover:not(.active),
+#logout_btn:hover{
+    background-color: #e3e9f7;
+}
+
+.side-item a{
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    color: #0a0a0a;
+    gap: 14px;
+    font-size: 14px;
+}
+
+.side-item.active a {
+    color: #84b3ce;
+}
+
+.side-item a i{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+}
+
+#logout{
+    border-top: 1px solid #e3e9f7;
+    padding: 12px;
+}
+
+#logout_btn{
+    padding: 12px;
+    border: none;
+    font-size: 14px;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    border-radius: 8px;
+    text-align: start;
+    cursor: pointer;
+    background-color: transparent;
+}
+
+main{
+    padding: 20px;
+    width: 200vh;
+}
+
+#main_content{
+    min-height: 100vh;
+    min-height: 95vh;
+    display: flex;
+    flex-direction: column;
+}
+
+#main_title{
+    font-size: 24px;
+}
+
+.custom-radio input{
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+}
+
+.custom-radio .checkmark{
+    position: relative;
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    background-color: #0e0e0e;
+    border-color: yellow;
+    border-radius: 50%;
+    margin-right: 8px;
+    cursor: pointer;
+}
+
+
+.custom-radio input:before .checkmark{
+    border-style: red;
+}
+
+.custom-radio input:checked~ .checkmark{
+    background-color: red;
+}
