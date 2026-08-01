@@ -20,7 +20,6 @@ body {
     height: 100vh;
     width: 50%;
     display: block;
-    
 }
 
 .titulo {
@@ -94,7 +93,6 @@ label {
     width: 800px;
 }
 
-
 button {
     width: 530px;
     margin-left: 80px;
@@ -120,7 +118,6 @@ button:hover {
     margin-top: 33px;
     color: #16587B;
 }
-
 
 .termos {
     margin-left: 80px;
@@ -151,7 +148,6 @@ video {
     font-family:"Roboto", sans-serif;
     font-size: 14px;
     margin-left: 8.8%;
-    
 }
 
 .mensagem {
@@ -175,6 +171,7 @@ video {
     transition: 0.3s;
     cursor: pointer;
 } 
+
 .divSair:hover {
     background-color: #16587B;
 }
@@ -190,3 +187,5 @@ video {
      color: #f5eedd;
     font-family: "Roboto", sans-serif;
 }
+
+.
