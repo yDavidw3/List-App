@@ -2,7 +2,7 @@
 
 Aplicação web para criação e gerenciamento de listas de tarefas (To-Do List). Desenvolvida sob o modelo de Server-Side Rendering (SSR).
 
-## Tecnologias e Dependências.
+## Tecnologias e Dependências
 
 * **Ambiente de Execução:** Node.js
 * **Framework Web:** Express
