@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.0/css/all.min.css" integrity="sha512-ApSLB1Pd3/bZN8fWB/RG9YhN/7bd9Hkf3AGaE2mPfebjrxagjuBtx2GcgdqIlJkUzwylBo61r9Xa9NmgBI0swA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href=" /login.css">
+    <title>Login</title>
+</head>
+<body>
+
+    <section class="login">
+
+        <div class="divSair">
+            <a href="/">
+                <i class="fa-solid fa-chevron-left"></i>
+                <span id="seta_voltar">Voltar</span>
+            </a>
+            
+        </div>
+
+        <h1 class="titulo">List App</h1>
+        <h2 class="saudacao">Bem vindo(a) de volta!</h2>
+        
+
+        <form action="dadosEnviados" method="POST">
+
+            <div class="cadastro">
+            <p>Ainda não possui uma conta? </p> 
+            <a href="">Faça seu cadastro</a>
+            </div>
+
+            <div class="-divinputs">
+
+            <div class="grupoInput">
+            <label for="email">E-mail</label>
+            <input type="email" name="email" placeholder="Digite o seu email..."  required>
+            </div>
+
+
+            <div class="grupoInput">
+            <label for="senha">Senha</label>
+            <input type="password" name="senha" placeholder="Digite a sua senha..." required>
+            </div>
+
+            </div>
+
+                 <div class="mensagem">
+                    <% if(mensagem) { %>
+                        <p class="mensagemErro"> <%= mensagem %> </p>
+
+                    <% } %>
+                </div>
+
+            <button type="submit">Entrar</button>
+
+            <a href="" class="esqueceuSenha">Esqueceu sua senha? </a>
+
+            <p class="termos">Ao continuar com o e-mail, você está concordando com os <u title="Termos de Serviço">Termos de Serviço</u> e <u title="Política de Privacidade">Política de <br> Privacidade</u> do List App.</p>
+
+        </form>
+
+        
+
+    </section>
+
+     <section class="decoracaoEsquerdo">
+
+        <div class="div-img">
+        <video autoplay muted loop >
+
+            <source src="/videos/video.mp4">
+
+        </video>
+        </div>
+    </section>
+    
+</body> 
+</html> 
