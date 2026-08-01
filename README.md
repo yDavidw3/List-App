@@ -12,4 +12,3 @@ Aplicação web para criação e gerenciamento de listas de tarefas (To-Do List)
   ## Licença
 
 Este projeto está licenciado sob a licença MIT - consulte o arquivo LICENSE para obter detalhes.
-.
