@@ -18,6 +18,43 @@ app.get('/dashboard', (req, res) => {
     });
 });
 
+app.get('/login', (req, res) => {
+
+    res.render('login', {
+        mensagem: null
+        
+    });
+});
+
+app.post('/dadosEnviados', (req, res) => {
+
+    
+    const email = req.body.email;
+    const senha = req.body.senha;
+
+    const emailCorreto = "joazinhodasilva@gmail.com"
+    const senhaCorreto = "12345678"
+
+        if(email == emailCorreto && senha == senhaCorreto ) {
+
+            res.redirect('/dashboard');
+
+        } else {
+            const mensagem = "* E-mail ou senha incorretos."
+            res.render("login", { mensagem });
+            
+        }
+
+app.get('/dashboard', (req, res) => {
+
+    res.render('dashboard', {
+        mensagem: null
+    });
+});
+    
+});
+
+
 app.listen(port, () => {
     console.log(`O servidor está rodando na porta ${port}`);
 })
