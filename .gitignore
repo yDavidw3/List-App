@@ -1,0 +1,12 @@
+# Dependências
+node_modules/
+dist/
+build/
+
+# Sistema operacional
+.DS_Store
+Thumbs.db
+
+# Pasta de editores
+.vscode/
+.idea
