@@ -1,0 +1,192 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+body {
+    margin: 0;
+    display: flex;
+}
+
+.decoracaoEsquerdo {
+    background-color: #f4ece6;
+    height: 100vh;
+    width: 50%;
+    display:flex;
+    margin-left: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+} 
+
+.login {
+    height: 100vh;
+    width: 50%;
+    display: block;
+    
+}
+
+.titulo {
+    color: #16587b;
+    margin-left: 80px;
+    margin-top: 10%;
+    font-size: 40px;
+    font-family: "Poppins", sans-serif;
+    font-weight: bold;
+}
+
+.saudacao {
+    margin-left: 80px;
+    margin-top: 60px;
+    font-size: 30px;
+    font-family: "Roboto", sans-serif; 
+}
+
+.cadastro {
+    display: flex;
+    margin-left: 75px;
+    margin-top: 0px;
+    margin-bottom: 15px;
+    align-items: center;
+    gap: 8px;
+    font-family: "Roboto", sans-serif; 
+    font-size: 15px;
+}
+
+.cadastro a {
+    color: #16587B;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    font-family: "Roboto", sans-serif; 
+    margin-left: auto;
+}
+
+input {
+    width: 500px;
+    padding: 26px 14px 10px 14px ;
+    margin-left: 80px;
+    border-radius: 10px;
+    margin-bottom: 23px;
+    font-weight: bold;
+    border: 2px solid black;
+    outline: none;
+    transition: box-shadow 0.3 ease;
+}
+
+input:focus {
+    box-shadow: 0px 0 12px rgba(0, 0, 0, 0.562);
+}
+
+label {
+    margin-left: 80px;
+    margin-bottom: 8px;
+    font-size: 13px;
+    position: absolute;
+    margin-top: 5px;
+    left: 14px;
+    font-weight: bold;
+    pointer-events: none;
+}
+
+.groupInput {
+    position: relative;
+    margin-left: 80px;
+    width: 800px;
+}
+
+
+button {
+    width: 530px;
+    margin-left: 80px;
+    padding: 15px;
+    border-radius: 10px;
+    border: 0 solid;
+    font-weight: bold;
+    background-color: #76b4d7;
+    cursor: pointer;
+    transition: 0.5s;
+    color: #16587B;
+    font-size: 15px;
+}
+
+button:hover {
+    transform:translateY(-2px);
+    box-shadow: 0 0 20px rgba(0, 200, 255, 0.411);
+
+}
+
+.esqueceuSenha {
+    margin-left: 80px;
+    margin-top: 33px;
+    color: #16587B;
+}
+
+
+.termos {
+    margin-left: 80px;
+    margin-top: 33px;
+    color: #5a5959  ;
+}
+
+.termos u {
+    cursor: pointer;
+}
+
+video {
+    width: 100%;
+    max-width: 900px;
+    height: auto;
+}
+
+.div-img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+}   
+
+.mensagemErro {
+    color: rgb(192, 7, 7);
+    font-family:"Roboto", sans-serif;
+    font-size: 14px;
+    margin-left: 8.8%;
+    
+}
+
+.mensagem {
+    margin-top: -20px;
+    min-height: 24px;
+}
+
+.divSair {
+    display: flex;
+    flex-direction: row;
+    width: 58px;
+    height: 25px;
+    padding: 10px;
+    background-color: #84B3ce;
+    justify-content: center;
+    align-items: center;
+    margin-left: 80px;
+    margin-top: 30px;
+    position: absolute;
+    border-radius: 15px;
+    transition: 0.3s;
+    cursor: pointer;
+} 
+.divSair:hover {
+    background-color: #16587B;
+}
+
+.divSair a {
+    display: flex;
+    text-decoration: none;
+    color: #f5eedd;
+    font-family: "Roboto", sans-serif;
+}
+
+.divSair a {
+     color: #f5eedd;
+    font-family: "Roboto", sans-serif;
+}
