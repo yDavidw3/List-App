@@ -78,7 +78,7 @@ app.get('/cadastro', (req, res) => {
         
         if(senha!== confirmarSenha){
             const mensagem = "* As senhas não coincidem"
-                return res.render("cadastro", { mensagem });
+                return res.render("cadastro", { mensagem })
         }
 
         else {
