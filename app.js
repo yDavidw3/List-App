@@ -54,6 +54,39 @@ app.get('/dashboard', (req, res) => {
     
 });
 
+app.get('/cadastro', (req, res) => {
+
+    res.render('cadastro', {
+        mensagem: null
+        
+    });
+});
+
+    app.post('/dadosEnviadosCadastro', (req, res) => {
+
+    
+    const confirmarSenha= req.body.confirmarSenha;
+    const senha = req.body.senha;
+
+
+        if(senha.length < 8) {
+
+             const mensagem = "* A senha deve conter no mínimo 8 caracteres"
+               return res.render("cadastro", { mensagem });
+
+        } 
+        
+        if(senha!== confirmarSenha){
+            const mensagem = "* As senhas não coincidem"
+                return res.render("cadastro", { mensagem });
+        }
+
+        else {
+           
+            res.redirect('/dashboard');
+        }
+});
+
 
 app.listen(port, () => {
     console.log(`O servidor está rodando na porta ${port}`);
