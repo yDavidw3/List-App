@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href=" /cadastro.css">
+    <title>Cadastro</title>
+</head>
+<body>
+
+    <section class="login">
+        <h1 class="titulo">List App</h1>
+        <h2 class="saudacao">Inscreva-se!</h2>
+        
+
+        <form action="dadosEnviadosCadastro" method="POST">
+
+            <div class="cadastro">
+            <p>Já possui uma conta? </p> 
+            <a href="/login">Faça o Login</a>
+            </div>
+
+            <div class="-divinputs">
+
+            <div class="grupoInput">
+            <label for="email">E-mail</label>
+            <input type="email" name="email" placeholder="Digite o seu email..."  required>
+            </div>
+
+
+            <div class="grupoInput">
+            <label for="senha">Senha</label>
+            <input type="password" name="senha" placeholder="Digite a sua senha..." required>
+            </div>
+
+             <div class="grupoInput">
+            <label for="senha">Confirme sua senha</label>
+            <input type="password" name="confirmarSenha" placeholder="Digite a sua senha..." required>
+            </div>  
+
+            </div>
+
+                 <div class="mensagem">
+                    <% if(mensagem) { %>
+                        <p class="mensagemErro"> <%= mensagem %> </p>
+
+                    <% } %>
+                </div>
+
+            <button type="submit">Criar</button>
+
+            <a href="" class="esqueceuSenha">Esqueceu sua senha? </a>
+
+            <p class="termos">Ao criar sua conta, você está concordando com os <u title="Termos de Serviço">Termos de Serviço</u> e <u title="Política de Privacidade">Política de <br> Privacidade</u> do List App.</p>
+
+        </form>
+
+        
+
+    </section>
+
+     <section class="decoracaoEsquerdo">
+
+        <div class="div-img">
+        <video autoplay muted loop >
+
+            <source src="/videos/video2.mp4">
+
+        </video>
+        </div>
+    </section>
+    
+</body> 
+</html> 
