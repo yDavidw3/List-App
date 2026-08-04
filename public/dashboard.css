@@ -61,7 +61,7 @@ body{
 .side-item{
     border-radius: 8px;
     padding: 10px;
-    cursor: pointer
+    cursor: pointer;
 }
 
 .side-item.active{
@@ -113,49 +113,186 @@ body{
     background-color: transparent;
 }
 
+#logout_btn_link{
+    text-decoration: none;
+}
+
 main{
-    padding: 20px;
-    width: 200vh;
+    padding: 40px;
+    width: 100%;
+    padding-left: 17%;
+    padding-right: 17%;
 }
 
 #main_content{
-    min-height: 100vh;
-    min-height: 95vh;
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    max-width: 800px;
 }
 
 #main_title{
-    font-size: 24px;
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 24px;
+    color: #0a0a0a;
 }
 
-.custom-radio input{
-    position: absolute;
-    opacity: 0;
+.modal-container {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.4);
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+}
+
+.modal-conteudo {
+    background-color: #ffffff;
+    padding: 25px;
+    border-radius: 12px;
+    width: 350px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.modal-conteudo h3 {
+    margin-bottom: 15px;
+    color: #0a0a0a;
+}
+
+.modal-conteudo input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    outline: none;
+}
+
+.modal-btn {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.btn-primario {
+    background-color: #16587b;
+    color: #ffffff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.btn-secundario {
+    background-color: transparent;
+    color: #6b6b6b;
+    border: 1px solid #6b6b6b;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.btn-flutuante {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 55px;
+    height: 55px;
+    border-radius: 10px;
+    background-color: #16587b;
+    color: #f5eedd;
+    font-size: 28px;
+    border: none;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0;
+    transition: 0.3s;
 }
 
-.custom-radio .checkmark{
-    position: relative;
-    display: inline-block;
-    width: 30px;
-    height: 30px;
-    background-color: #0e0e0e;
-    border-color: yellow;
-    border-radius: 50%;
-    margin-right: 8px;
+.btn-flutuante:hover {
+    background-color: #84b3ce;
+    color: #16587b;
+}
+
+.container-lista {
+    margin-top: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+}
+
+.note_item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2px;
+}
+
+.note_item input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.note_item label {
+    display: inline-flex;
+    align-items: center;
     cursor: pointer;
+    position: relative;
+    user-select: none;
+    padding-left: 32px;
+    font-size: 16px;
+    color: #0a0a0a;
+    border-top: 1px solid gray;
+    width: 100%;
+    padding-top: 10px;
 }
 
-
-.custom-radio input:before .checkmark{
-    border-style: red;
+.note_item label::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 14px;
+    height: 14px;
+    border: 2px dotted #0e0e0e;
+    border-radius: 50%;
+    background-color: transparent;
+    transition: all 0.2s ease;
+    margin-top: 5px;
 }
 
-.custom-radio input:checked~ .checkmark{
-    background-color: red;
+.note_item label::after {
+    content: "\f00c";
+    font-family: "Font Awesome 6 Free", "Font Awesome 7 Free", "Font Awesome";
+    font-weight: 900;
+    display: inline-block;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 24px;
+    text-align: center;
+    font-size: 11px;
+    color: #ffffff;
+    transform: translateY(-50%) scale(0);
+    transition: transform 0.2s ease;
+}
+
+.note_item input[type="radio"]:checked + label::before {
+    background-color: #16587b;
+    border-style: 2px solid #0e0e0e;
+}
+
+.note_item input[type="radio"]:checked + label::after {
+    transform: translateY(-50%) scale(1);
 }
