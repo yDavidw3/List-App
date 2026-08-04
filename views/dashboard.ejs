@@ -4,61 +4,64 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.0/css/all.min.css" integrity="sha512-ApSLB1Pd3/bZN8fWB/RG9YhN/7bd9Hkf3AGaE2mPfebjrxagjuBtx2GcgdqIlJkUzwylBo61r9Xa9NmgBI0swA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://jsdelivr.net" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="/dashboard.css">
     <title>List App - Dashboard</title>
 </head>
 <body>
     <nav id="sidebar">
         <div id="sidebar_content">
-        <div id="user">
-            <img src="/img/avatar.png" id="user_avatar" alt="Avatar">
-            <p id="user_infos">
-                <span class="item-description">
-                    Usuário
-                </span>
-                <span>
-                    Plano free
-                </span>
-            </p>
-        </div>
+            <div id="user">
+                <img src="/img/avatar.png" id="user_avatar" alt="Avatar">
+                <p id="user_infos">
+                    <span class="item-description">Usuário</span>
+                    <span>Plano free</span>
+                </p>
+            </div>
 
-        <ul id="side_items">
-            <li class="side-item active">
-                <a href="#">
-                    <i class="fa-solid fa-inbox"></i>
-                <span class="item-description">
-                    Caixa de Entrada
-                </span>
-                </a>
-            </li>
-        </ul>
+            <ul id="side_items">
+                <li class="side-item active">
+                    <a href="#">
+                        <i class="fa-solid fa-inbox"></i>
+                        <span class="item-description">Caixa de Entrada</span>
+                    </a>
+                </li>
+            </ul>
         </div>
 
         <div id="logout">
-
-            <a href="/login">
-            <button id="logout_btn">
-                <i class="fa-solid fa-right-from-bracket"></i>
-                <span class="item-description">
-                    Sair
-                </span>
-            </button>
-        </a>
+            <a id="logout_btn_link" href="/login">
+                <button id="logout_btn">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                    <span class="item-description">Sair</span>
+                </button>
+            </a>
         </div>
     </nav>
 
     <main>
         <div id="main_content">
-            <h1 id="main_title">
-                Entrada
-            </h1>
-            <div id="note_item">
-                    <label class="custom-radio">
-                        <input type="radio" value="0" name="task" id="task">
-                        <span class="checkmark"></span>
-                        Tarefa
-                    </label>
+            <h1 id="main_title">Entrada</h1>
+
+            <button id="btn_abrir_modal" class="btn-flutuante">+</button>
+
+            <div id="modal_tarefa" class="modal-container">
+                <div class="modal-conteudo">
+                    <h3>Nova Tarefa</h3>
+                    <input type="text" id="input_tarefa_nome" placeholder="Nome da tarefa">
+                    <div class="modal-btn">
+                        <button id="btn_cancelar" class="btn-secundario">Cancelar</button>
+                        <button id="btn_salvar" class="btn-primario">Salvar</button>
+                    </div>
+                </div>
             </div>
+
+            <div id="lista_tarefas" class="container-lista"></div>
+
+            <div id="retorno_container" class="position-fixed bottom-0 end-0 p-3"></div>
+
+            <script src="https://jsdelivr.net" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+            <script src="/js/dashboard.js"></script>
         </div>  
     </main>
 </body>
