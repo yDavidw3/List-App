@@ -87,6 +87,15 @@ app.get('/cadastro', (req, res) => {
         }
 });
 
+app.get('/sobrenos', (req, res) => {
+
+    res.render('sobre', {
+        mensagem: null
+        
+    });
+});
+
+
 
 app.listen(port, () => {
     console.log(`O servidor está rodando na porta ${port}`);
