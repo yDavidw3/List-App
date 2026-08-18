@@ -1,11 +1,40 @@
 const express = require('express');
 const app = express();
+const cookieParser = require('cookie-parser');
 const port = 8081;
 
+app.use(cookieParser());
 app.use(express.static("public"));
 app.set('view engine', 'ejs');
 app.use(express.urlencoded({extended: true}));
 
+const temas = {
+    claro: {bg: '#f5eedd', text: '#212121', nome: 'Claro'},
+    escuro: {bg: '#212121', text: '#e8e8e8', nome: 'Escuro'},
+};
+
+app.use((req, res, next) => {
+    const nomeTema = req.cookies.tema || 'claro';
+    const temaAtual = temas[nomeTema] || temas.claro;
+
+    res.locals.tema = temaAtual;
+    res.locals.nomeTema = temaAtual.nome;
+
+    next();
+});
+
+app.post('/temas', (req, res) => {
+    const temaEscolhido = req.body.tema;
+
+    if (temas[temaEscolhido]) {
+        res.cookie('tema', temaEscolhido, {
+            maxAge: 1000 * 60 * 60 * 24 * 30,
+            httpOnly: true
+        });
+    }
+
+    res.redirect('/config');
+});
 app.get('/', (req, res) => {
     res.render('index', {
 
@@ -15,6 +44,18 @@ app.get('/', (req, res) => {
 app.get('/dashboard', (req, res) => {
     res.render('dashboard', {
         
+    });
+});
+
+app.get('/config', (req, res) => {
+    res.render('config', {
+        mensagem: null
+    });
+});
+
+app.get('/sobre', (req, res) => {
+    res.render('sobre', {
+        mensagem: null
     });
 });
 
@@ -86,6 +127,7 @@ app.get('/cadastro', (req, res) => {
             res.redirect('/dashboard');
         }
 });
+
 
 
 app.listen(port, () => {
