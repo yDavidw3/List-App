@@ -128,6 +128,15 @@ app.get('/cadastro', (req, res) => {
         }
 });
 
+app.get('/sobrenos', (req, res) => {
+
+    res.render('sobre', {
+        mensagem: null
+        
+    });
+});
+
+
 
 
 app.listen(port, () => {
