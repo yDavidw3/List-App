@@ -4,86 +4,86 @@
     box-sizing: border-box;
 }
 
-body{
+body {
     background-color: #f5eedd;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Trebuchet MS', 'Segoe UI', Arial, sans-serif;
 }
 
-header{
-    padding-bottom: 1.5%;
-    border-bottom: 1px solid black;
-}
-
-.display-navbar{
+header {
     display: flex;
-    flex-direction: row;
     justify-content: space-between;
-    margin-left: 10%;
-    margin-right: 10%;
+    align-items: center;
+    padding: 24px 10%;
+    border-bottom: 2px solid #1a1a1a;
 }
 
-.logo-site{
-    padding-top: 1%;
+header a,
+header a:visited,
+header a:link {
+    text-decoration: none;
+    color: #1a1a1a;
 }
 
-button{
-    color: #f5eedd;
+.logo a,
+.logo-site a {
+    font-size: 1.5rem;
+    font-weight: 800;
+}
+
+nav a {
+    font-weight: 600;
+    margin-right: 32px;
+}
+
+.link-ativo {
+    border-bottom: 2px solid #1a1a1a;
+    padding-bottom: 4px;
+}
+
+header button,
+.botao,
+.botao-navbar button {
     background-color: #16587b;
+    color: #ffffff;
     border: none;
-    padding: 15px 32px;
-    text-align: center;
-    display: inline-block;
+    outline: none;
+    padding: 12px 22px;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 0.95rem;
     cursor: pointer;
-    border-radius: 10px;
     transition: 0.3s;
 }
 
-button:hover{
-    
+header button:hover,
+.botao:hover,
+.botao-navbar button:hover {
     background-color: #84b3ce;
     color: #16587b;
 }
 
-ul li{
-    list-style-type: none;
-    padding-top: 1%
-}
-
-ul li a{
-    text-decoration: none;
-    list-style-type: none;
-    color: #000;
-    font-weight: 800;
-    font-size: 150%;
-}
-
-.primeira-parte{
-    display: flex;
-    justify-content: space-between;
-}
-
-main{
+main {
     margin-left: 10%;
     margin-right: 10%;
-    padding-top: 10%   
+    padding-top: 10%;
 }
 
-section h1{
+section h1 {
     font-size: 350%;
     padding-bottom: 7%;
 }
 
-.frase-efeito{
+.frase-efeito {
     font-weight: 800;
 }
 
-.texto-explicacao{
+.texto-explicacao {
     font-size: 120%;
     padding-top: 2%;
     color: #737373;
 }
 
-.botao-secundario{
+.botao-secundario {
     color: #16587b;
     background-color: #84b3ce;
     border: none;
@@ -98,27 +98,32 @@ section h1{
     transition: 0.3s;
 }
 
-.botao-secundario:hover{
+.botao-secundario:hover {
     background-color: #16587b;
     color: #f5eedd;
 }
 
-.imagem{
+.imagem {
     width: 35%;
     margin-top: -5%;
 }
 
-.segunda-parte{
+.primeira-parte {
     display: flex;
     justify-content: space-between;
-    padding-top: 20%
 }
 
-.quebra-linha{
+.segunda-parte {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 20%;
+}
+
+.quebra-linha {
     display: block;
 }
 
-.terceira-parte{
+.terceira-parte {
     display: flex;
     justify-content: space-between;
     padding-top: 20%;
@@ -126,37 +131,37 @@ section h1{
     padding-bottom: 15%;
 }
 
-footer{
+footer {
     background-color: #84b3ce;
     border-top: 5px solid #16587b;
 }
 
-.conteudo-footer{
+.conteudo-footer {
     height: 450px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 }
 
-aside{
+aside {
     padding-top: 5%;
     width: 50%;
 }
 
-.espacamento-esquerda{
+.espacamento-esquerda {
     margin-left: 10%;
 }
 
-.espacamento-direita{
+.espacamento-direita {
     margin-right: 10%;
 }
 
-aside h1{
+aside h1 {
     color: white;
     font-size: 20px;
 }
 
-aside a{
+aside a {
     color: white;
     padding-top: 10%;
     font-size: 13px;
@@ -164,11 +169,13 @@ aside a{
     display: block;
 }
 
-hr{
+hr {
     border-color: #000;
 }
 
-.direitos-autorais{
+.direitos-autorais {
     background-color: #84b3ce;
     text-align: center;
+    padding: 10px 0;
+    color: #ffffff;
 }

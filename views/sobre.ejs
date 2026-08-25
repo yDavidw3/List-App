@@ -1,10 +1,51 @@
-<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sobre nós — List App</title>
-<link rel="stylesheet" href="sobre.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobre nós — List App</title>
+    <link rel="stylesheet" href="sobre.css">
+    <style>
+        body{
+            background-color: <%= cores.bg %> !important;
+            color: <%= cores.color %> !important;
+        }
+
+        header {
+            border-bottom-color: <%= temaAtual == 'escuro' ? '#333333' : '#1a1a1a' %> !important;
+        }
+
+        .logo, nav a {
+            color: <%= cores.color %> !important;
+        }
+
+        .link-ativo {
+            border-bottom-color: <%= temaAtual == 'escuro' ? '#84b3ce' : '#1a1a1a' %> !important;
+        }
+
+        <% if (temaAtual == 'escuro') { %>
+          .caixa-objetivo, .card-kaique, .card-david {
+              background-color: #1a2228 !important;
+              border-color: #2c3a47 !important;
+          }
+
+        .caixa-objetivo h2, .card-kaique h3, .card-david h3 {
+              color: #ffffff !important;
+        }
+
+        .caixa-objetivo p, .descricao, .texto-secao, .subtitulo {
+              color: #d1d5db !important;
+        }
+
+        .destaque {
+              color: #84b3ce !important;
+        }
+
+        footer {
+              border-top-color: #333333 !important;
+              color: #aaaaaa !important;
+        }
+        <% } %>
+    </style>
 </head>
 <body>
 
@@ -63,6 +104,6 @@
 <footer>
   List App — feito com dedicação por Kaique Santos e David Paiva.
 </footer>
-
 </body>
 </html>
+

@@ -5,29 +5,58 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>List App</title>
     <link rel="stylesheet" href="/style.css">
+    <style>
+        body {
+            background-color: <%= cores.bg %> !important;
+            color: <%= cores.color %> !important;
+        }
+
+        header {
+            border-bottom-color: <%= temaAtual == 'escuro' ? '#333333' : '#1a1a1a' %> !important;
+        }
+
+        
+        header a,
+        .logo-site a, 
+        nav a {
+            color: <%= cores.color %> !important;
+            text-decoration: none !important;
+        }
+
+        .link-ativo {
+            border-bottom: 2px solid <%= temaAtual == 'escuro' ? '#84b3ce' : '#1a1a1a' %> !important;
+        }
+
+        .texto-explicacao {
+            color: <%= temaAtual == 'escuro' ? '#a0a0a0' : '#737373' %> !important;
+        }
+
+        <% if (temaAtual == 'escuro') { %>
+            footer {
+                background-color: #16587b !important;
+                border-top: 5px solid #84b3ce !important;
+            }
+
+            .direitos-autorais {
+                background-color: #16587b !important;
+                color: #ffffff !important;
+            }
+
+            hr {
+                border-color: #84b3ce !important;
+            }
+        <% } %>
+    </style>
 </head>
 <body>
-    <header>
+<header>
+    <div class="logo"><a href="/">List App</a></div>
         <nav>
-            <ul>
-                <li>
-                    <div class="display-navbar">
-                        <div class="logo-site">
-                            <a href="">List App</a>  
-                        </div>
-                        <div class="botao-navbar">
-
-                            <a href="/login">
-                                <button>
-                                    <p>Comece agora</p>
-                                </button>
-                             </a>
-                        </div> 
-                    </div>
-                </li>
-            </ul>
+            <a href="/" class="link-ativo">Início</a>
+            <a href="/sobre">Sobre nós</a>
         </nav>
-    </header>  
+    <a href="/login"><button class="botao">Comece agora</button></a>
+</header>
     
     <main>
         <section class="primeira-parte">
