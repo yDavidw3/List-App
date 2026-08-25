@@ -1,118 +1,51 @@
-<!DOCTYPE html>
-<<<<<<< HEAD
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.0/css/all.min.css" integrity="sha512-ApSLB1Pd3/bZN8fWB/RG9YhN/7bd9Hkf3AGaE2mPfebjrxagjuBtx2GcgdqIlJkUzwylBo61r9Xa9NmgBI0swA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="/dashboard.css">
-    <title>Sobre nós - List App</title>
-</head>
-<body>
-    <nav id="sidebar">
-        <div id="sidebar_content">
-            <div id="user">
-                <img src="/img/avatar.png" id="user_avatar" alt="Avatar">
-                <p id="user_infos">
-                    <span class="item-description">Usuário</span>
-                    <span>Plano free</span>
-                </p>
-            </div>
+    <title>Sobre nós — List App</title>
+    <link rel="stylesheet" href="sobre.css">
+    <style>
+        body{
+            background-color: <%= cores.bg %> !important;
+            color: <%= cores.color %> !important;
+        }
 
-            <ul id="side_items">
-                <li class="side-item active">
-                    <a href="/dashboard">
-                        <i class="fa-solid fa-inbox"></i>
-                        <span class="item-description">Caixa de Entrada</span>
-                    </a>
-                </li>
-            </ul>
+        header {
+            border-bottom-color: <%= temaAtual == 'escuro' ? '#333333' : '#1a1a1a' %> !important;
+        }
 
-            <ul id="side_items">
-                <li class="side-item active">
-                    <a href="/sobre">
-                        <i class="fa-solid fa-circle-info"></i>
-                        <span class="item-description">Sobre nós</span>
-                    </a>
-                </li>
-            </ul>
+        .logo, nav a {
+            color: <%= cores.color %> !important;
+        }
 
-            <ul id="side_items">
-                <li class="side-item active">
-                    <a href="/config">
-                        <i class="fa-solid fa-sliders"></i>
-                        <span class="item-description">Configurações</span>
-                    </a>
-                </li>
-            </ul>
-        </div>
+        .link-ativo {
+            border-bottom-color: <%= temaAtual == 'escuro' ? '#84b3ce' : '#1a1a1a' %> !important;
+        }
 
-        <div id="logout">
-            <a id="logout_btn_link" href="/login">
-                <button id="logout_btn">
-                    <i class="fa-solid fa-right-from-bracket"></i>
-                    <span class="item-description">Sair</span>
-                </button>
-            </a>
-        </div>
-    </nav>
+        <% if (temaAtual == 'escuro') { %>
+          .caixa-objetivo, .card-kaique, .card-david {
+              background-color: #1a2228 !important;
+              border-color: #2c3a47 !important;
+          }
 
-    <main>
-        <div id="main_content">
-            <h1 id="main_title">Sobre nós</h1>
+        .caixa-objetivo h2, .card-kaique h3, .card-david h3 {
+              color: #ffffff !important;
+        }
 
-            <div>
-                <span>Um pouco mais sobre nosso time de  desenvolvimento:</span>
-            </div>
+        .caixa-objetivo p, .descricao, .texto-secao, .subtitulo {
+              color: #d1d5db !important;
+        }
 
-            <div class="moldura">
-                <img src="/img/time.png" alt="Nosso time de desenvolvimento">
-            </div>
+        .destaque {
+              color: #84b3ce !important;
+        }
 
-            <div class="separador"></div>
-
-            <div class="individual">
-                <span>Precisavamos de um nome simples para uma aplicação de lista de tarefas</span>
-            </div>
-
-            <div class="individual">
-                <span>Kaique e David, então, começaram a produzir o que seria o protótipo do projeto atual</span>
-            </div>
-
-            <div class="individual">
-                <span>Nas primeiras semanas se dedicaram a listar os requisitos funcionais e não funcionais</span>
-            </div>
-
-            <div class="individual">
-                <span>Kaique começou a lógica de login e cadastro, enquanto David começava com o design</span>
-            </div>
-
-            <div class="individual">
-                <span>David desenvolveu a lógica de guardar as tarefas e Kaique aprimorou o design já feito</span>
-            </div>
-
-            <div class="individual">
-                <span>Kaique finalizando o MER do banco de dados</span>
-            </div>
-
-            <div class="individual">
-                <span>E com as implementações dos cookies, feitas por David</span>
-            </div>
-
-            <div class="individual">
-                <span>Já tinhamos a aplicação pronta. E apresentamos o List-App</span>
-            </div>
-        </div>  
-    </main>
-</body>
-</html>
-=======
-<html lang="pt-BR">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sobre nós — List App</title>
-<link rel="stylesheet" href="sobre.css">
+        footer {
+              border-top-color: #333333 !important;
+              color: #aaaaaa !important;
+        }
+        <% } %>
+    </style>
 </head>
 <body>
 
@@ -171,7 +104,6 @@
 <footer>
   List App — feito com dedicação por Kaique Santos e David Paiva.
 </footer>
-
 </body>
 </html>
->>>>>>> 2d91dbc8b5ab45eb18460a4c8041210cb941d771
+

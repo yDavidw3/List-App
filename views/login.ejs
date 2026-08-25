@@ -6,6 +6,36 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.0/css/all.min.css" integrity="sha512-ApSLB1Pd3/bZN8fWB/RG9YhN/7bd9Hkf3AGaE2mPfebjrxagjuBtx2GcgdqIlJkUzwylBo61r9Xa9NmgBI0swA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href=" /login.css">
     <title>Login</title>
+    <style>
+        body{
+            background-color: <%= cores.bg %> !important;
+            color: <%= cores.color %> !important;
+        }
+
+        .titulo {
+            color: <%= temaAtual == 'escuro' ? '#84b3ce' : '#16587b' %> !important;
+        }
+
+        .saudacao {
+            color: <%= cores.color %> !important;
+        }
+
+        .cadastro p {
+            color: <%= cores.color %> !important;
+        }
+
+        .cadastro a, .esqueceuSenha {
+            color: <%= temaAtual == 'escuro' ? '#84b3ce' : '#16587b' %> !important;
+        }
+
+        label {
+            color: #333333 !important;
+        }
+
+        .termos {
+            color: <%= temaAtual == 'escuro' ? '#aaaaaa' : '#5a5959' %> !important;
+        }
+    </style>
 </head>
 <body>
 

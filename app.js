@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const cookieParser = require('cookie-parser');
-const port = 8081;
+const PORT = 8081;
 
 app.use(cookieParser());
 app.use(express.static("public"));
@@ -9,63 +9,83 @@ app.set('view engine', 'ejs');
 app.use(express.urlencoded({extended: true}));
 
 const temas = {
-    claro: {bg: '#f5eedd', text: '#212121', nome: 'Claro'},
-    escuro: {bg: '#212121', text: '#e8e8e8', nome: 'Escuro'},
+    escuro: {bg: '#111111', color: '#e8e8e8', sidebarBg: '#222222', sidebarColor: '#e8e8e8'},
+    claro: {bg: '#f5eedd', color: '#0e0e0e', sidebarBg: '#eae2d1', sidebarColor: '#0e0e0e'},
 };
 
-app.use((req, res, next) => {
-    const nomeTema = req.cookies.tema || 'claro';
-    const temaAtual = temas[nomeTema] || temas.claro;
-
-    res.locals.tema = temaAtual;
-    res.locals.nomeTema = temaAtual.nome;
-
-    next();
-});
-
-app.post('/temas', (req, res) => {
-    const temaEscolhido = req.body.tema;
-
-    if (temas[temaEscolhido]) {
-        res.cookie('tema', temaEscolhido, {
-            maxAge: 1000 * 60 * 60 * 24 * 30,
-            httpOnly: true
-        });
-    }
-
-    res.redirect('/config');
-});
 app.get('/', (req, res) => {
-    res.render('index', {
+    const temaEscolhido = req.cookies.meuTema || 'claro';
 
+    res.render('index', { 
+        cores: temas[temaEscolhido],
+        temaAtual: temaEscolhido
     });
 });
 
 app.get('/dashboard', (req, res) => {
-    res.render('dashboard', {
-        
+    const temaEscolhido = req.cookies.meuTema || 'claro';
+
+    res.render('dashboard', { 
+        cores: temas[temaEscolhido],
+        temaAtual: temaEscolhido
     });
 });
 
 app.get('/config', (req, res) => {
+    console.log("teste cookie", req.cookies);
+    const temaEscolhido = req.cookies.meuTema || 'claro';
+
     res.render('config', {
+        cores: temas[temaEscolhido],
+        temaAtual: temaEscolhido,
         mensagem: null
     });
 });
 
 app.get('/sobre', (req, res) => {
+    const temaEscolhido = req.cookies.meuTema || 'claro';
+
     res.render('sobre', {
+        cores: temas[temaEscolhido],
+        temaAtual: temaEscolhido,
         mensagem: null
     });
 });
 
 app.get('/login', (req, res) => {
+    const temaEscolhido = req.cookies.meuTema || 'claro';
 
     res.render('login', {
+        cores: temas[temaEscolhido],
+        temaAtual: temaEscolhido,
         mensagem: null
-        
     });
 });
+
+app.get('/cadastro', (req, res) => {
+    const temaEscolhido = req.cookies.meuTema || 'claro';
+
+    res.render('cadastro', {
+        cores: temas[temaEscolhido],
+        temaAtual: temaEscolhido,
+        mensagem: null
+    });
+});
+
+
+app.get('/salvar-tema', (req, res) => {
+    const novoTema = req.query.tema;
+    res.cookie('meuTema', novoTema,{
+        maxAge: 7 * 24 * 60 * 60 * 1000,
+        httpOnly: true,
+        path: '/'
+        
+    });
+    res.redirect('/config');
+})
+
+
+
 
 app.post('/dadosEnviados', (req, res) => {
 
@@ -86,24 +106,16 @@ app.post('/dadosEnviados', (req, res) => {
             
         }
 
-app.get('/dashboard', (req, res) => {
+    app.get('/dashboard', (req, res) => {
 
-    res.render('dashboard', {
-        mensagem: null
-    });
+        res.render('dashboard', {
+            mensagem: null
+        });
 });
     
 });
 
-app.get('/cadastro', (req, res) => {
-
-    res.render('cadastro', {
-        mensagem: null
-        
-    });
-});
-
-    app.post('/dadosEnviadosCadastro', (req, res) => {
+app.post('/dadosEnviadosCadastro', (req, res) => {
 
     
     const confirmarSenha= req.body.confirmarSenha;
@@ -128,17 +140,17 @@ app.get('/cadastro', (req, res) => {
         }
 });
 
-app.get('/sobrenos', (req, res) => {
-
-    res.render('sobre', {
-        mensagem: null
-        
-    });
+app.use((req, res)  => {
+    res.status(404)
+    res.render('404')
 });
 
+app.use((err, req, res, next) => {
+    console.error(err.message)
+    res.status(500)
+    res.render('500')
+});
 
-
-
-app.listen(port, () => {
-    console.log(`O servidor está rodando na porta ${port}`);
+app.listen(PORT, () => {
+    console.log(`O servidor está rodando na porta ${PORT}`);
 })

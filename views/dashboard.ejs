@@ -6,14 +6,76 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.0/css/all.min.css" integrity="sha512-ApSLB1Pd3/bZN8fWB/RG9YhN/7bd9Hkf3AGaE2mPfebjrxagjuBtx2GcgdqIlJkUzwylBo61r9Xa9NmgBI0swA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="/dashboard.css">
     <title>Dashboard - List App</title>
+    <style>
+        body{
+            background-color: <%= cores.bg %> !important;
+            color: <%= cores.color %> !important;
+        }
+        .sidebar {
+            background-color: <%= cores.sidebarBg %> !important;
+            color: <%= cores.sidebarColor %> !important; 
+        }
+        #user_infos,
+        #user_infos span:first-child,
+        #logout_btn,
+        #logout_btn i,
+        .sidebar .item-description {
+            color: <%= cores.sidebarColor %> !important;
+        }
+
+        #user_infos span:last-child {
+            color: <%= temaAtual == 'escuro' ? '#aaaaaa' : '#6b6b6b' %> !important;
+        }
+
+        #logout {
+            border-top: 1px solid <%= temaAtual == 'escuro' ? '#333333' : '#e3e9f7' %> !important;
+        }
+
+        .side-item:hover:not(.active),
+        #logout_btn:hover {
+            background-color: <%= temaAtual == 'escuro' ? '#333333' : '#e3e9f7' %> !important;
+        }
+        .modal-conteudo {
+            background-color: <%= cores.sidebarBg %> !important;
+            color: <%= cores.color %> !important;
+        }
+
+        .modal-conteudo input {
+            background-color: <%= cores.sidebarBg %> !important;
+            color: <%= cores.color %> !important;
+        }
+
+        .modal-conteudo input::placeholder {
+            color: <%= temaAtual == 'escuro' ? '#888888' : '#666666' %> !important;
+        }
+
+        .btn-secundario {
+            color: <%= cores.color %> !important;
+        }
+
+        .btn-secundario:hover {
+            background-color: <%= temaAtual == 'escuro' ? '#333333' : '#90909034' %> !important;
+        }
+        .note_item label::before {
+            border-color: <%= temaAtual == 'escuro' ? '#e8e8e8' : '#0e0e0e' %> !important;
+        }
+
+        .note_item input[type="radio"]:checked + label::before {
+            border-color: <%= temaAtual == 'escuro' ? '#e8e8e8' : '#0e0e0e' %> !important;
+        }
+
+        .note_item label {
+            border-top-color: <%= temaAtual == 'escuro' ? '#444444' : 'gray' %> !important;
+        }
+    </style>
 </head>
 <body>
-    <nav id="sidebar">
+    <nav class="sidebar">
         <div id="sidebar_content">
             <div id="user">
                 <img src="/img/avatar.png" id="user_avatar" alt="Avatar">
                 <p id="user_infos">
-                    <span class="item-description">Usuário</span>
+                    <span class="item-description">Joãozinho</span>
                     <span>Plano free</span>
                 </p>
             </div>
@@ -23,15 +85,6 @@
                     <a href="/dashboard">
                         <i class="fa-solid fa-inbox"></i>
                         <span class="item-description">Caixa de Entrada</span>
-                    </a>
-                </li>
-            </ul>
-
-            <ul id="side_items">
-                <li class="side-item active">
-                    <a href="/sobre">
-                        <i class="fa-solid fa-circle-info"></i>
-                        <span class="item-description">Sobre nós</span>
                     </a>
                 </li>
             </ul>
@@ -64,11 +117,15 @@
 
             <div id="modal_tarefa" class="modal-container">
                 <div class="modal-conteudo">
-                    <h3>Nova Tarefa</h3>
+                    
                     <input type="text" id="input_tarefa_nome" placeholder="Nome da tarefa">
                     <div class="modal-btn">
-                        <button id="btn_cancelar" class="btn-secundario">Cancelar</button>
-                        <button id="btn_salvar" class="btn-primario">Salvar</button>
+                        <button id="btn_cancelar" class="btn-secundario">
+                            <i class="fa-solid fa-xmark"></i>
+                        </button>
+                        <button id="btn_salvar" class="btn-primario">
+                            <i class="fa-solid fa-arrow-up"></i>
+                        </button>
                     </div>
                 </div>
             </div>

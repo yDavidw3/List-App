@@ -5,6 +5,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href=" /cadastro.css">
     <title>Cadastro</title>
+    <style>
+        body{
+            background-color: <%= cores.bg %> !important;
+            color: <%= cores.color %> !important;
+        }
+        .titulo {
+            color: <%= temaAtual == 'escuro' ? '#84b3ce' : '#16587b' %> !important;
+        }
+
+        .saudacao {
+            color: <%= cores.color %> !important;
+        }
+
+        .cadastro p {
+            color: <%= cores.color %> !important;
+        }
+
+        .cadastro a, .esqueceuSenha {
+            color: <%= temaAtual == 'escuro' ? '#84b3ce' : '#16587b' %> !important;
+        }
+
+        label {
+            color: #333333 !important;
+        }
+
+        .termos {
+            color: <%= temaAtual == 'escuro' ? '#aaaaaa' : '#5a5959' %> !important;
+        }
+    </style>
 </head>
 <body>
 
