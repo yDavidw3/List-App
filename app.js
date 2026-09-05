@@ -3,6 +3,12 @@ const app = express();
 const cookieParser = require('cookie-parser');
 const PORT = 8081;
 
+//MONGO DB
+const mongoose = require('mongoose');
+const Mongo_url = "mongodb://localhost:27017/dbListApp";
+//MONGO DB
+
+//COOKIE
 app.use(cookieParser());
 app.use(express.static("public"));
 app.set('view engine', 'ejs');
@@ -21,7 +27,9 @@ app.get('/', (req, res) => {
         temaAtual: temaEscolhido
     });
 });
+//COOKIE
 
+//DASHBOARD E CONFIG
 app.get('/dashboard', (req, res) => {
     const temaEscolhido = req.cookies.meuTema || 'claro';
 
@@ -41,7 +49,9 @@ app.get('/config', (req, res) => {
         mensagem: null
     });
 });
+//DASHBOARD E CONFIG
 
+//SOBRE
 app.get('/sobre', (req, res) => {
     const temaEscolhido = req.cookies.meuTema || 'claro';
 
@@ -51,6 +61,36 @@ app.get('/sobre', (req, res) => {
         mensagem: null
     });
 });
+//SOBRE
+
+
+
+
+app.get('/salvar-tema', (req, res) => {
+    const novoTema = req.query.tema;
+    res.cookie('meuTema', novoTema,{
+        maxAge: 7 * 24 * 60 * 60 * 1000,
+        httpOnly: true,
+        path: '/'
+        
+    });
+    res.redirect('/config');
+})
+
+//LOGIN E CADASTRO
+mongoose.connect(Mongo_url)
+.then(() => console.log('Conectado ao MongoDB com sucesso!'))
+.catch((err) => consol.error('Erro ao conectar com o MongoDB:', err ));
+
+const usuarioSchema  = new mongoose.Schema({
+    email: {type: String, required: true},
+    senha: {type: String, required: true}
+})
+
+const UsuarioLogin = mongoose.model('UsuarioLogin', usuarioSchema, 'usuario');
+
+    
+
 
 app.get('/login', (req, res) => {
     const temaEscolhido = req.cookies.meuTema || 'claro';
@@ -72,48 +112,36 @@ app.get('/cadastro', (req, res) => {
     });
 });
 
-
-app.get('/salvar-tema', (req, res) => {
-    const novoTema = req.query.tema;
-    res.cookie('meuTema', novoTema,{
-        maxAge: 7 * 24 * 60 * 60 * 1000,
-        httpOnly: true,
-        path: '/'
-        
-    });
-    res.redirect('/config');
-})
-
-
-
-
-app.post('/dadosEnviados', (req, res) => {
+app.post('/dadosEnviados', async (req, res) => {
 
     
     const email = req.body.email;
     const senha = req.body.senha;
 
-    const emailCorreto = "joazinhodasilva@gmail.com"
-    const senhaCorreto = "12345678"
+    const usuario = await UsuarioLogin.findOne({
+        email: email,
+        senha: senha
+    })
 
-        if(email == emailCorreto && senha == senhaCorreto ) {
+
+        if(usuario) {
 
             res.redirect('/dashboard');
 
         } else {
+            const temaEscolhido = req.cookies.meuTema || 'claro';
             const mensagem = "* E-mail ou senha incorretos."
-            res.render("login", { mensagem });
+            res.render("login", { 
+                cores: temas[temaEscolhido],
+                temaAtual: temaEscolhido,
+                mensagem });
             
         }
 
-    app.get('/dashboard', (req, res) => {
-
-        res.render('dashboard', {
-            mensagem: null
-        });
+   
 });
     
-});
+
 
 app.post('/dadosEnviadosCadastro', (req, res) => {
 
@@ -139,6 +167,7 @@ app.post('/dadosEnviadosCadastro', (req, res) => {
             res.redirect('/dashboard');
         }
 });
+//LOGIN E CADASTRO
 
 app.use((req, res)  => {
     res.status(404)
