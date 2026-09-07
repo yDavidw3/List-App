@@ -12,7 +12,8 @@
         }
 
         header {
-            border-bottom-color: <%= temaAtual == 'escuro' ? '#333333' : '#1a1a1a' %> !important;
+            background-color: <%= cores.bg %> !important;
+            border-bottom-color: <%= temaAtual == 'escuro' ? '#3a5a5c' : '#163c3f' %> !important;
         }
 
         
@@ -24,35 +25,45 @@
         }
 
         .link-ativo {
-            border-bottom: 2px solid <%= temaAtual == 'escuro' ? '#84b3ce' : '#1a1a1a' %> !important;
+            border-bottom: 2px solid <%= temaAtual == 'escuro' ? '#f2b134' : '#163c3f' %> !important;
         }
 
         .texto-explicacao {
-            color: <%= temaAtual == 'escuro' ? '#a0a0a0' : '#737373' %> !important;
+            color: <%= temaAtual == 'escuro' ? '#9c9184' : '#746b5e' %> !important;
         }
 
         <% if (temaAtual == 'escuro') { %>
             footer {
-                background-color: #16587b !important;
-                border-top: 5px solid #84b3ce !important;
+                background-color: #0b1b1c !important;
+                border-top: 4px solid #f2b134 !important;
             }
 
-            .direitos-autorais {
-                background-color: #16587b !important;
-                color: #ffffff !important;
+            .voltar-topo {
+                background-color: #f2b134 !important;
+                color: #102325 !important;
             }
 
-            hr {
-                border-color: #84b3ce !important;
+            .voltar-topo:hover {
+                background-color: #f3ead9 !important;
+                color: #102325 !important;
             }
         <% } %>
     </style>
 </head>
 <body>
-<header>
-    <div class="logo"><a href="/">List App</a></div>
+<header id="cabecalho">
+    <div class="logo">
+        <span class="logo-icone">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 12.5L9.5 17L19 7" stroke="#163c3f" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </span>
+        <a href="/">List App</a>
+        <span class="selo-header">grátis pra sempre</span>
+    </div>
         <nav>
             <a href="/" class="link-ativo">Início</a>
+            <a href="#como-funciona">Como funciona</a>
             <a href="/sobre">Sobre nós</a>
         </nav>
     <a href="/login"><button class="botao">Comece agora</button></a>
@@ -68,10 +79,14 @@
             </div>
             
             <div class="imagem">
+                <span class="etiqueta">sem enrolação</span>
                 <img src="/img/imagem-primeira-parte.png" alt="Bloco de anotações com figuras (Pássaro, Mulher passeando com seu cachorro e um vazo de plantas ao redor da folha/bloco de anotações).">
             </div>
-        </section>   
+        </section>
 
+        <svg class="divisor" viewBox="0 0 90 14" xmlns="http://www.w3.org/2000/svg">
+            <path d="M2 7C12 -2 22 16 32 7C42 -2 52 16 62 7C72 -2 82 16 88 7" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+        </svg>
 
         <section class="segunda-parte">
             <div>
@@ -84,10 +99,14 @@
                 <img src="/img/imagem-segunda-parte.png" alt="Bloco de anotações com rabiscos e um lápis ao lado.">
             </div>
         </section>
-        
 
-        <section class="terceira-parte">
+        <svg class="divisor" viewBox="0 0 90 14" xmlns="http://www.w3.org/2000/svg">
+            <path d="M2 7C12 -2 22 16 32 7C42 -2 52 16 62 7C72 -2 82 16 88 7" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+        </svg>
+
+        <section class="terceira-parte" id="como-funciona">
             <div>
+                <span class="passo">1</span>
                 <h1>Dá pra fazer de olhos <span class="quebra-linha">fechados.</span> </h1>
                 <p class="texto-explicacao">Crie uma conta > vá até a página inicial > <span class="quebra-linha">clique no “+” e crie uma tarefa.</span></p>
                 <p class="texto-explicacao quebra-linha">Nomeie como quiser, personalize do seu <span class="quebra-linha">jeito.</span></p>
@@ -100,6 +119,11 @@
     </main>
 
         <footer>
+            <div class="footer-topo">
+                <p class="footer-marca">List App</p>
+                <p class="footer-slogan">Organize sua vida sem esforço.</p>
+            </div>
+
             <div class="conteudo-footer">
                 <aside class="espacamento-esquerda">
                     <h1>Quem somos</h1>
@@ -140,5 +164,23 @@
             <hr>
             <p class="direitos-autorais">&copy; 2026 LIST APP. Todos os direitos reservados.</p>
         </footer>
+
+        <button class="voltar-topo" id="botaoVoltarTopo" aria-label="Voltar ao topo">↑</button>
+
+        <script>
+            // dá uma sombrinha no header quando rola a página, e mostra o botão de voltar ao topo
+            const cabecalho = document.getElementById('cabecalho');
+            const botaoTopo = document.getElementById('botaoVoltarTopo');
+
+            window.addEventListener('scroll', () => {
+                const rolou = window.scrollY > 40;
+                cabecalho.classList.toggle('com-sombra', rolou);
+                botaoTopo.classList.toggle('visivel', window.scrollY > 400);
+            });
+
+            botaoTopo.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        </script>
 </body>
 </html>

@@ -4,16 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.0/css/all.min.css" integrity="sha512-ApSLB1Pd3/bZN8fWB/RG9YhN/7bd9Hkf3AGaE2mPfebjrxagjuBtx2GcgdqIlJkUzwylBo61r9Xa9NmgBI0swA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href=" /login.css">
+    <link rel="stylesheet" href="/login.css">
     <title>Login</title>
     <style>
-        body{
+        body {
             background-color: <%= cores.bg %> !important;
             color: <%= cores.color %> !important;
         }
 
         .titulo {
-            color: <%= temaAtual == 'escuro' ? '#84b3ce' : '#16587b' %> !important;
+            color: <%= temaAtual == 'escuro' ? '#f2b134' : '#163c3f' %> !important;
         }
 
         .saudacao {
@@ -25,15 +25,19 @@
         }
 
         .cadastro a, .esqueceuSenha {
-            color: <%= temaAtual == 'escuro' ? '#84b3ce' : '#16587b' %> !important;
+            color: <%= temaAtual == 'escuro' ? '#f2b134' : '#2a9d8f' %> !important;
+        }
+
+        .cadastro a::after, .esqueceuSenha::after {
+            background-color: <%= temaAtual == 'escuro' ? '#f2b134' : '#2a9d8f' %> !important;
         }
 
         label {
-            color: #333333 !important;
+            color: <%= temaAtual == 'escuro' ? '#cfc4ab' : '#746b5e' %> !important;
         }
 
         .termos {
-            color: <%= temaAtual == 'escuro' ? '#aaaaaa' : '#5a5959' %> !important;
+            color: <%= temaAtual == 'escuro' ? '#aaaaaa' : '#746b5e' %> !important;
         }
     </style>
 </head>
@@ -46,62 +50,76 @@
                 <i class="fa-solid fa-chevron-left"></i>
                 <span id="seta_voltar">Voltar</span>
             </a>
-            
         </div>
 
-        <h1 class="titulo">List App</h1>
+        <div class="cabecalho-login">
+            <span class="logo-icone">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M5 12.5L9.5 17L19 7" stroke="#163c3f" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </span>
+            <h1 class="titulo">List App</h1>
+        </div>
+
         <h2 class="saudacao">Bem vindo(a) de volta!</h2>
-        
 
         <form action="dadosEnviados" method="POST">
 
             <div class="cadastro">
-            <p>Ainda não possui uma conta? </p> 
-            <a href="/cadastro">Faça seu cadastro</a>
+                <p>Ainda não possui uma conta?</p>
+                <a href="/cadastro">Faça seu cadastro</a>
             </div>
 
-            <div class="-divinputs">
-
-            <div class="grupoInput">
-            <label for="email">E-mail</label>
-            <input type="email" name="email" placeholder="Digite o seu email..."  required>
+            <div class="grupo-input">
+                <label for="email">E-mail</label>
+                <input type="email" id="email" name="email" placeholder="Digite o seu email..." required>
             </div>
 
-
-            <div class="grupoInput">
-            <label for="senha">Senha</label>
-            <input type="password" name="senha" placeholder="Digite a sua senha..." required>
+            <div class="grupo-input campo-senha">
+                <label for="senha">Senha</label>
+                <input type="password" id="senha" name="senha" placeholder="Digite a sua senha..." required>
+                <button type="button" class="alternar-senha" id="alternarSenha" aria-label="Mostrar senha">
+                    <i class="fa-solid fa-eye" id="iconeSenha"></i>
+                </button>
             </div>
 
+            <div class="mensagem">
+                <% if(mensagem) { %>
+                    <p class="mensagemErro"><%= mensagem %></p>
+                <% } %>
             </div>
-
-                 <div class="mensagem">
-                    <% if(mensagem) { %>
-                        <p class="mensagemErro"> <%= mensagem %> </p>
-
-                    <% } %>
-                </div>
 
             <button type="submit">Entrar</button>
 
-            <a href="" class="esqueceuSenha">Esqueceu sua senha? </a>
+            <a href="" class="esqueceuSenha">Esqueceu sua senha?</a>
 
-            <p class="termos">Ao continuar com o e-mail, você está concordando com os <u title="Termos de Serviço">Termos de Serviço</u> e <u title="Política de Privacidade">Política de <br> Privacidade</u> do List App.</p>
+            <p class="termos">Ao continuar com o e-mail, você está concordando com os <u title="Termos de Serviço">Termos de Serviço</u> e <u title="Política de Privacidade">Política de Privacidade</u> do List App.</p>
 
         </form>
 
     </section>
 
-     <section class="decoracaoEsquerdo">
-
+    <section class="decoracaoEsquerdo">
         <div class="div-img">
-        <video autoplay muted loop >
-
-            <source src="/videos/video.mp4">
-
-        </video>
+            <video autoplay muted loop playsinline>
+                <source src="/videos/video.mp4">
+            </video>
         </div>
     </section>
-    
-</body> 
-</html> 
+
+    <script>
+        const botaoAlternar = document.getElementById('alternarSenha');
+        const campoSenha = document.getElementById('senha');
+        const iconeSenha = document.getElementById('iconeSenha');
+
+        botaoAlternar.addEventListener('click', () => {
+            const visivel = campoSenha.type === 'text';
+            campoSenha.type = visivel ? 'password' : 'text';
+            iconeSenha.classList.toggle('fa-eye');
+            iconeSenha.classList.toggle('fa-eye-slash');
+            botaoAlternar.setAttribute('aria-label', visivel ? 'Mostrar senha' : 'Ocultar senha');
+        });
+    </script>
+
+</body>
+</html>

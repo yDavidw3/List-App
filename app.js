@@ -80,11 +80,11 @@ app.get('/salvar-tema', (req, res) => {
 //LOGIN E CADASTRO
 mongoose.connect(Mongo_url)
 .then(() => console.log('Conectado ao MongoDB com sucesso!'))
-.catch((err) => consol.error('Erro ao conectar com o MongoDB:', err ));
+.catch((err) => console.error('Erro ao conectar com o MongoDB:', err ));
 
 const usuarioSchema  = new mongoose.Schema({
     email: {type: String, required: true},
-    senha: {type: String, required: true}
+    senha: {type: String, required: true},
 })
 
 const UsuarioLogin = mongoose.model('UsuarioLogin', usuarioSchema, 'usuario');
@@ -134,7 +134,8 @@ app.post('/dadosEnviados', async (req, res) => {
             res.render("login", { 
                 cores: temas[temaEscolhido],
                 temaAtual: temaEscolhido,
-                mensagem });
+                mensagem
+             });
             
         }
 
@@ -143,29 +144,63 @@ app.post('/dadosEnviados', async (req, res) => {
     
 
 
-app.post('/dadosEnviadosCadastro', (req, res) => {
+app.post('/dadosEnviadosCadastro', async  (req, res) => {
 
     
-    const confirmarSenha= req.body.confirmarSenha;
+    const confirmarSenha = req.body.confirmarSenha;
+    const email = req.body.email;
     const senha = req.body.senha;
-
+    const temaEscolhido = req.cookies.meuTema || 'claro';
 
         if(senha.length < 8) {
 
              const mensagem = "* A senha deve conter no mínimo 8 caracteres"
-               return res.render("cadastro", { mensagem });
+               return res.render("cadastro", { 
+                cores: temas[temaEscolhido],
+                temaAtual: temaEscolhido,
+                mensagem
+             });
 
         } 
         
         if(senha!== confirmarSenha){
             const mensagem = "* As senhas não coincidem"
-                return res.render("cadastro", { mensagem })
+                return res.render("cadastro", { 
+                    mensagem,
+                    cores: temas[temaEscolhido],
+                    temaAtual: temaEscolhido,
+                 });
         }
 
-        else {
+        const emailExistente =  await UsuarioLogin.findOne({
+            email: email
+        });
+
+        if(emailExistente) {
+            const mensagem = "* O email já cadastrado em nosso sistema!"
+                return res.render("cadastro", { 
+                    mensagem,
+                    cores: temas[temaEscolhido],
+                    temaAtual: temaEscolhido,
+                 });
+
+        }
+
+          else {
+
+            await UsuarioLogin.create({
+                email: email,
+                senha: senha
+            })
+
+
            
             res.redirect('/dashboard');
         }
+
+
+
+      
 });
 //LOGIN E CADASTRO
 
