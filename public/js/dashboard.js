@@ -1,105 +1,136 @@
-let tarefas = JSON.parse(localStorage.getItem('minhas_tarefas')) || [];
-let ultimaTarefaExcluida = null;
+var tarefas = JSON.parse(localStorage.getItem('minhas_tarefas')) || []
+var ultimaTarefaExcluida = null
 
-const btnAbrirModal = document.getElementById('btn_abrir_modal');
-const modalTarefa = document.getElementById('modal_tarefa');
-const btnCancelar = document.getElementById('btn_cancelar');
-const btnSalvar = document.getElementById('btn_salvar');
-const inputTarefaNome = document.getElementById('input_tarefa_nome');
-const listaTarefasContainer = document.getElementById('lista_tarefas');
-const retornoContainer = document.getElementById('retorno_container');
+var modalTarefaEl = document.getElementById('modal_tarefa')
+var modalTarefa = new bootstrap.Modal(modalTarefaEl)
 
-btnAbrirModal.addEventListener('click', () => {
-    modalTarefa.style.display = 'flex';
-    inputTarefaNome.focus();
-});
+var btnSalvar = document.getElementById('btn_salvar')
+var inputTarefaNome = document.getElementById('input_tarefa_nome')
+var selectTarefaEtiqueta = document.getElementById('select_tarefa_etiqueta')
+var inputTarefaPrazo = document.getElementById('input_tarefa_prazo')
+var listaTarefasContainer = document.getElementById('lista_tarefas')
+var retornoContainer = document.getElementById('retorno_container')
 
-const fecharModal = () => {
-    modalTarefa.style.display = 'none';
-    inputTarefaNome.value = '';
-};
+var coresEtiqueta = {
+    Urgente: 'danger',
+    Trabalho: 'primary',
+    Pessoal: 'success',
+    Estudo: 'warning'
+}
 
-btnCancelar.addEventListener('click', fecharModal);
-
-btnSalvar.addEventListener('click', () => {
-    const nomeTexto = inputTarefaNome.value.trim();
+btnSalvar.addEventListener('click', function() {
+    var nomeTexto = inputTarefaNome.value.trim()
     if (nomeTexto == '') {
-        alert('Por favor, digite uma descrição para a tarefa.');
-        return;
+        alert('Por favor, digite uma descrição para a tarefa.')
+        return
     }
 
-    const novaTarefa = {
+    var novaTarefa = {
         id: Date.now().toString(),
-        nome: nomeTexto
-    };
+        nome: nomeTexto,
+        etiqueta: selectTarefaEtiqueta.value,
+        prazo: inputTarefaPrazo.value
+    }
 
-    tarefas.push(novaTarefa);
-    salvarNoLocalStorage();
-    renderizarTarefas();
-    fecharModal();
-});
+    tarefas.push(novaTarefa)
+    salvarNoLocalStorage()
+    renderizarTarefas()
+
+    inputTarefaNome.value = ''
+    selectTarefaEtiqueta.selectedIndex = 0
+    inputTarefaPrazo.value = ''
+    modalTarefa.hide()
+})
+
+function formatarData(dataISO) {
+    if (!dataISO) {
+        return ''
+    }
+    var partes = dataISO.split('-')
+    var ano = partes[0]
+    var mes = partes[1]
+    var dia = partes[2]
+    return dia + '/' + mes + '/' + ano
+}
 
 function renderizarTarefas() {
-    listaTarefasContainer.innerHTML = '';
-    tarefas.forEach(tarefa => {
-        const divNotaItem = document.createElement('div');
-        divNotaItem.id = `note_item_${tarefa.id}`;
-        divNotaItem.className = 'note_item';
-        divNotaItem.innerHTML = `
-            <input type="radio" id="radio_${tarefa.id}" name="tarefa_${tarefa.id}">
-            <label for="radio_${tarefa.id}">${tarefa.nome}</label>
-        `;
+    listaTarefasContainer.innerHTML = ''
 
-        const radioButton = divNotaItem.querySelector('input[type="radio"]');
-        radioButton.addEventListener('change', () => conclusaoTarefa(tarefa.id));
+    tarefas.forEach(function(tarefa) {
+        var itemLista = document.createElement('li')
+        itemLista.id = 'note_item_' + tarefa.id
+        itemLista.className = 'list-group-item d-flex align-items-center justify-content-between gap-2'
 
-        listaTarefasContainer.appendChild(divNotaItem);
-    });
+        var corBadge = coresEtiqueta[tarefa.etiqueta]
+        if (corBadge == undefined) {
+            corBadge = 'secondary'
+        }
+
+        var htmlEtiqueta = ''
+        if (tarefa.etiqueta) {
+            htmlEtiqueta = '<span class="badge bg-' + corBadge + '">' + tarefa.etiqueta + '</span>'
+        }
+
+        var htmlPrazo = ''
+        if (tarefa.prazo) {
+            htmlPrazo = '<small class="text-muted">' + formatarData(tarefa.prazo) + '</small>'
+        }
+
+        itemLista.innerHTML = '<div class="form-check d-flex align-items-center gap-2 flex-grow-1"><input class="form-check-input" type="checkbox" id="check_' + tarefa.id + '"><label class="form-check-label" for="check_' + tarefa.id + '">' + tarefa.nome + '</label></div><div class="d-flex align-items-center gap-2">' + htmlEtiqueta + htmlPrazo + '</div>'
+
+        var checkbox = itemLista.querySelector('input[type="checkbox"]')
+        checkbox.addEventListener('change', function() {
+            conclusaoTarefa(tarefa.id)
+        })
+
+        listaTarefasContainer.appendChild(itemLista)
+    })
 }
 
 function conclusaoTarefa(id) {
-    const elementoTarefa = document.getElementById(`note_item_${id}`);
-    if (elementoTarefa) {
-        elementoTarefa.style.opacity = '0.5';
-        elementoTarefa.style.transition = 'opacity 0.4s ease';
+    var elementoTarefa = document.getElementById('note_item_' + id)
+    if (elementoTarefa != null) {
+        elementoTarefa.style.opacity = '0.5'
+        elementoTarefa.style.transition = 'opacity 0.4s ease'
     }
 
-    setTimeout(() => {
-        ultimaTarefaExcluida = tarefas.find(t => t.id == id);
-        tarefas = tarefas.filter(t => t.id !== id);
-        salvarNoLocalStorage();
-        renderizarTarefas();
-        mostrarToastRetorno();  
-    }, 600);
+    setTimeout(function() {
+        ultimaTarefaExcluida = tarefas.find(function(t) {
+            return t.id == id
+        })
+        tarefas = tarefas.filter(function(t) {
+            return t.id != id
+        })
+        salvarNoLocalStorage()
+        renderizarTarefas()
+        mostrarToastRetorno()
+    }, 600)
 }
 
 function mostrarToastRetorno() {
-    const toast = document.createElement('div');
-    toast.className = 'alert alert-success alert-dismissible fade show m-2 d-flex justify-content-between align-items-center';
-    toast.setAttribute('role', 'alert');
+    var toast = document.createElement('div')
+    toast.className = 'alert alert-success alert-dismissible fade show m-2 d-flex justify-content-between align-items-center'
+    toast.setAttribute('role', 'alert')
 
-    toast.innerHTML = `
-        <span>Tarefa realizada e excluída!</span>
-        <button id="btn_refazer" class="btn btn-sm btn-link text-success fw-bold p-0 ms-3" style="text-decoration: none;">Refazer</button>
-    `;
-    retornoContainer.appendChild(toast);
+    toast.innerHTML = '<span>Tarefa realizada e excluída!</span><button id="btn_refazer" class="btn btn-sm btn-link text-success fw-bold p-0 ms-3" style="text-decoration: none;">Refazer</button>'
+    retornoContainer.appendChild(toast)
 
-    toast.querySelector('#btn_refazer').addEventListener('click', () => {
-        if (ultimaTarefaExcluida) {
-            tarefas.push(ultimaTarefaExcluida);
-            salvarNoLocalStorage();
-            renderizarTarefas();
-            toast.remove();
+    toast.querySelector('#btn_refazer').addEventListener('click', function() {
+        if (ultimaTarefaExcluida != null) {
+            tarefas.push(ultimaTarefaExcluida)
+            salvarNoLocalStorage()
+            renderizarTarefas()
+            toast.remove()
         }
-    });
+    })
 
-    setTimeout(() => {
-        toast.remove();
-    }, 5000);
+    setTimeout(function() {
+        toast.remove()
+    }, 5000)
 }
 
 function salvarNoLocalStorage() {
-    localStorage.setItem('minhas_tarefas', JSON.stringify(tarefas));
+    localStorage.setItem('minhas_tarefas', JSON.stringify(tarefas))
 }
 
-renderizarTarefas();
+renderizarTarefas()

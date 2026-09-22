@@ -159,10 +159,6 @@ main {
     align-items: center;
 }
 
-.tema p {
-    
-}
-
 .switch {
     font-size: 12px;
     position: relative;
@@ -216,80 +212,14 @@ input:checked + .slider:before {
     background-color: #fff;
 }
 
-.modal-container {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    justify-content: center;
-    align-items: center;
-    z-index: 2000;
-}
-
-.modal-conteudo {
-    display: flex;
-    background-color: #f5eedd;
-    color: #0e0e0e;
-    padding: 10px;
-    border-radius: 12px;
-    height: 70px;
-    width: 600px;
-    position: absolute;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
-}
-
-.modal-conteudo input {
-    width: 100%;
-    height: 100%;
-    padding: 5px;
-    background-color: #f5eedd;
-    color: #0e0e0e;
-    font-weight: 600;
-    font-size: 14px;
-    margin-bottom: 20px;
-    border: none;
-    border-radius: 6px;
-    outline: none;
-}
-
-.modal-btn {
-    display: flex;
-    justify-content: flex-end;
-    gap: 10px;
-    width: 100%;
-}
-
-.btn-primario {
-    width: 50px;
-    height: 50px;
+.btn-primary {
     background-color: #16587b;
-    color: #f5eedd;
-    border: none;
-    padding: 8px 16px;
-    border-radius: 6px;
-    cursor: pointer;
+    border-color: #16587b;
 }
 
-.btn-primario:hover{
-    background-color: #16587bb3
-}
-
-.btn-secundario {
-    width: 50px;
-    height: 50px;
-    color: #0e0e0e;
-    background-color: transparent;
-    padding: 8px 16px;
-    border-radius: 6px;
-    cursor: pointer;
-    border: none;
-    transition: 0.2s ease;
-}
-
-.btn-secundario:hover{
-    background-color: #90909034;
+.btn-primary:hover {
+    background-color: #12475f;
+    border-color: #12475f;
 }
 
 .btn-flutuante {
@@ -324,73 +254,6 @@ input:checked + .slider:before {
     width: 100%;
 }
 
-.note_item {
-    display: flex;
-    align-items: center;
-    margin-bottom: 2px;
-}
-
-.note_item input[type="radio"] {
-    position: absolute;
-    opacity: 0;
-    width: 0;
-    height: 0;
-}
-
-.note_item label {
-    display: inline-flex;
-    align-items: center;
-    cursor: pointer;
-    position: relative;
-    user-select: none;
-    padding-left: 32px;
-    font-size: 16px;
-    color: var(--text);
-    border-top: 1px solid gray;
-    width: 100%;
-    padding-top: 10px;
-}
-
-.note_item label::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 14px;
-    height: 14px;
-    border: 2px dotted #0e0e0e;
-    border-radius: 50%;
-    background-color: transparent;
-    transition: all 0.2s ease;
-    margin-top: 5px;
-}
-
-.note_item label::after {
-    content: "\f00c";
-    font-family: "Font Awesome 6 Free", "Font Awesome 7 Free", "Font Awesome";
-    font-weight: 900;
-    display: inline-block;
-    position: absolute;
-    left: 0;
-    top: 50%;
-    width: 24px;
-    text-align: center;
-    font-size: 11px;
-    color: #ffffff;
-    transform: translateY(-50%) scale(0);
-    transition: transform 0.2s ease;
-}
-
-.note_item input[type="radio"]:checked + label::before {
-    background-color: #16587b;
-    border: 2px solid #0e0e0e;
-}
-
-.note_item input[type="radio"]:checked + label::after {
-    transform: translateY(-50%) scale(1);
-}
-
 .moldura {
     margin: 0 auto;
     justify-content: center;
@@ -413,8 +276,6 @@ input:checked + .slider:before {
 }
 
 .individual {
-    
-    
     text-align: center;
     margin-top: 50px;
     margin-bottom: -25px;

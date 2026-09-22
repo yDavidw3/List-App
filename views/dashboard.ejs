@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.0/css/all.min.css" integrity="sha512-ApSLB1Pd3/bZN8fWB/RG9YhN/7bd9Hkf3AGaE2mPfebjrxagjuBtx2GcgdqIlJkUzwylBo61r9Xa9NmgBI0swA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="/dashboard.css">
     <title>Dashboard - List App</title>
@@ -35,37 +36,23 @@
         #logout_btn:hover {
             background-color: <%= temaAtual == 'escuro' ? '#333333' : '#e3e9f7' %> !important;
         }
-        .modal-conteudo {
+
+        .modal-content {
             background-color: <%= cores.sidebarBg %> !important;
             color: <%= cores.color %> !important;
         }
 
-        .modal-conteudo input {
+        .form-control,
+        .form-select {
+            background-color: <%= temaAtual == 'escuro' ? '#2a2a2a' : '#ffffff' %> !important;
+            color: <%= cores.color %> !important;
+            border-color: <%= temaAtual == 'escuro' ? '#444444' : '#ced4da' %> !important;
+        }
+
+        .list-group-item {
             background-color: <%= cores.sidebarBg %> !important;
             color: <%= cores.color %> !important;
-        }
-
-        .modal-conteudo input::placeholder {
-            color: <%= temaAtual == 'escuro' ? '#888888' : '#666666' %> !important;
-        }
-
-        .btn-secundario {
-            color: <%= cores.color %> !important;
-        }
-
-        .btn-secundario:hover {
-            background-color: <%= temaAtual == 'escuro' ? '#333333' : '#90909034' %> !important;
-        }
-        .note_item label::before {
-            border-color: <%= temaAtual == 'escuro' ? '#e8e8e8' : '#0e0e0e' %> !important;
-        }
-
-        .note_item input[type="radio"]:checked + label::before {
-            border-color: <%= temaAtual == 'escuro' ? '#e8e8e8' : '#0e0e0e' %> !important;
-        }
-
-        .note_item label {
-            border-top-color: <%= temaAtual == 'escuro' ? '#444444' : 'gray' %> !important;
+            border-color: <%= temaAtual == 'escuro' ? '#333333' : '#e3e9f7' %> !important;
         }
     </style>
 </head>
@@ -113,27 +100,47 @@
         <div id="main_content">
             <h1 id="main_title">Entrada</h1>
 
-            <button id="btn_abrir_modal" class="btn-flutuante">+</button>
+            <button id="btn_abrir_modal" class="btn-flutuante" data-bs-toggle="modal" data-bs-target="#modal_tarefa">+</button>
 
-            <div id="modal_tarefa" class="modal-container">
-                <div class="modal-conteudo">
-                    
-                    <input type="text" id="input_tarefa_nome" placeholder="Nome da tarefa">
-                    <div class="modal-btn">
-                        <button id="btn_cancelar" class="btn-secundario">
-                            <i class="fa-solid fa-xmark"></i>
-                        </button>
-                        <button id="btn_salvar" class="btn-primario">
-                            <i class="fa-solid fa-arrow-up"></i>
-                        </button>
+            <div class="modal fade" id="modal_tarefa" tabindex="-1" aria-labelledby="modal_tarefa_label" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modal_tarefa_label">Nova tarefa</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="mb-3">
+                                <label for="input_tarefa_nome" class="form-label">Nome da tarefa</label>
+                                <input type="text" class="form-control" id="input_tarefa_nome" placeholder="Ex: Estudar para a prova">
+                            </div>
+                            <div class="mb-3">
+                                <label for="select_tarefa_etiqueta" class="form-label">Etiqueta</label>
+                                <select class="form-select" id="select_tarefa_etiqueta">
+                                    <option value="Pessoal">Pessoal</option>
+                                    <option value="Trabalho">Trabalho</option>
+                                    <option value="Urgente">Urgente</option>
+                                    <option value="Estudo">Estudo</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="input_tarefa_prazo" class="form-label">Prazo</label>
+                                <input type="date" class="form-control" id="input_tarefa_prazo">
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                            <button type="button" id="btn_salvar" class="btn btn-primary">Salvar</button>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <div id="lista_tarefas" class="container-lista"></div>
+            <ul id="lista_tarefas" class="list-group w-100"></ul>
 
             <div id="retorno_container" class="position-fixed bottom-0 end-0 p-3"></div>
 
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
             <script src="/js/dashboard.js"></script>
         </div>  
     </main>

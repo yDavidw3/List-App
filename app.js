@@ -142,8 +142,6 @@ app.post('/dadosEnviados', async (req, res) => {
    
 });
     
-
-
 app.post('/dadosEnviadosCadastro', async  (req, res) => {
 
     
