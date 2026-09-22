@@ -1,189 +1,325 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 
+* {
+    box-sizing: border-box;
+}
+
+
 body {
     margin: 0;
     display: flex;
+    min-height: 100vh;
+    background-color: #f7f0df;
+    font-family: "Roboto", sans-serif;
 }
 
-.decoracaoEsquerdo {
-    background-color: #f4ece6;
-    height: 100vh;
-    width: 50%;
-    display:flex;
-    margin-left: auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-} 
+/* ---------- LADO DO FORMULÁRIO ---------- */
 
 .login {
-    height: 100vh;
     width: 50%;
-    display: block;
+    min-height: 100vh;
+    padding: 0 9% 60px;
+    opacity: 0;
+    transform: translateY(12px);
+    animation: aparecer 0.6s ease forwards;
+}
+
+@keyframes aparecer {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .login {
+        animation: none;
+        opacity: 1;
+        transform: none;
+    }
+}
+
+.divSair {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    margin-top: 30px;
+    background-color: #cbe8e4;
+    border-radius: 999px;
+    transition: background-color 0.25s ease, transform 0.15s ease;
+    cursor: pointer;
+}
+
+.divSair:hover {
+    background-color: #163c3f;
+    transform: translateX(-2px);
+}
+
+.divSair a {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    text-decoration: none;
+    color: #163c3f;
+    font-family: "Roboto", sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.divSair:hover a {
+    color: #f7f0df;
+}
+
+.cabecalho-login {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 48px;
+}
+
+.logo-icone {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 9px;
+    background-color: #f2b134;
+    flex-shrink: 0;
+}
+
+.logo-icone svg {
+    width: 18px;
+    height: 18px;
 }
 
 .titulo {
-    color: #16587b;
-    margin-left: 80px;
-    margin-top: 10%;
-    font-size: 40px;
+    color: #163c3f;
+    font-size: 32px;
     font-family: "Poppins", sans-serif;
-    font-weight: bold;
+    font-weight: 800;
+    margin: 0;
 }
 
 .saudacao {
-    margin-left: 80px;
-    margin-top: 60px;
-    font-size: 30px;
-    font-family: "Roboto", sans-serif; 
+    margin-top: 40px;
+    font-size: 26px;
+    font-weight: 700;
+    color: #201f1c;
 }
 
 .cadastro {
     display: flex;
-    margin-left: 75px;
-    margin-top: 0px;
-    margin-bottom: 15px;
+    flex-wrap: wrap;
+    margin-top: 8px;
+    margin-bottom: 28px;
     align-items: center;
-    gap: 8px;
-    font-family: "Roboto", sans-serif; 
+    gap: 6px;
     font-size: 15px;
+    color: #746b5e;
 }
 
-.cadastro a {
-    color: #16587B;
+.cadastro a,
+.esqueceuSenha {
+    position: relative;
+    color: #2a9d8f;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.cadastro a::after,
+.esqueceuSenha::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 0%;
+    height: 2px;
+    background-color: #2a9d8f;
+    transition: width 0.25s ease;
+}
+
+.cadastro a:hover::after,
+.esqueceuSenha:hover::after {
+    width: 100%;
 }
 
 form {
     display: flex;
     flex-direction: column;
-    font-family: "Roboto", sans-serif; 
-    margin-left: auto;
+    max-width: 460px;
 }
 
-input {
-    width: 500px;
-    padding: 26px 14px 10px 14px ;
-    margin-left: 80px;
-    border-radius: 10px;
-    margin-bottom: 23px;
-    font-weight: bold;
-    border: 2px solid black;
-    outline: none;
-    transition: box-shadow 0.3 ease;
-}
-
-input:focus {
-    box-shadow: 0px 0 12px rgba(0, 0, 0, 0.562);
+.grupo-input {
+    position: relative;
+    margin-bottom: 22px;
 }
 
 label {
-    margin-left: 80px;
-    margin-bottom: 8px;
-    font-size: 13px;
     position: absolute;
-    margin-top: 5px;
-    left: 14px;
-    font-weight: bold;
+    top: 8px;
+    left: 16px;
+    font-size: 12px;
+    font-weight: 700;
+    color: #746b5e;
     pointer-events: none;
 }
 
-.groupInput {
-    position: relative;
-    margin-left: 80px;
-    width: 800px;
-}
-
-button {
-    width: 530px;
-    margin-left: 80px;
-    padding: 15px;
+input {
+    width: 100%;
+    padding: 26px 16px 10px;
     border-radius: 10px;
-    border: 0 solid;
-    font-weight: bold;
-    background-color: #76b4d7;
-    cursor: pointer;
-    transition: 0.5s;
-    color: #16587B;
-    font-size: 15px;
+    font-weight: 600;
+    font-family: "Roboto", sans-serif;
+    border: 1.5px solid #d8cdb4;
+    outline: none;
+    background-color: #ffffff;
+    color: #201f1c;
+    transition: box-shadow 0.25s ease, border-color 0.25s ease;
 }
 
-button:hover {
-    transform:translateY(-2px);
-    box-shadow: 0 0 20px rgba(0, 200, 255, 0.411);
+input::placeholder {
+    color: #b7ac97;
+    font-weight: 400;
+}
 
+input:focus {
+    border-color: #f2b134;
+    box-shadow: 0 4px 16px rgba(242, 177, 52, 0.25);
+}
+
+.campo-senha {
+    position: relative;
+}
+
+.alternar-senha {
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(4px);
+    background: none;
+    border: none;
+    color: #746b5e;
+    cursor: pointer;
+    font-size: 15px;
+    padding: 4px;
+}
+
+.alternar-senha:hover {
+    color: #163c3f;
+}
+
+.mensagem {
+    margin-top: -12px;
+    min-height: 20px;
+}
+
+.mensagemErro {
+    color: #c00707;
+    font-size: 14px;
+}
+
+button[type="submit"] {
+    width: 100%;
+    padding: 16px;
+    border-radius: 10px;
+    border: none;
+    font-weight: 700;
+    font-size: 15px;
+    background-color: #f2b134;
+    color: #163c3f;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.15s ease, box-shadow 0.3s ease;
+}
+
+button[type="submit"]:hover {
+    background-color: #163c3f;
+    color: #f7f0df;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(22, 60, 63, 0.25);
+}
+
+button[type="submit"]:active {
+    transform: translateY(0);
 }
 
 .esqueceuSenha {
-    margin-left: 80px;
-    margin-top: 33px;
-    color: #16587B;
+    display: inline-block;
+    margin-top: 24px;
+    width: fit-content;
 }
 
 .termos {
-    margin-left: 80px;
-    margin-top: 33px;
-    color: #5a5959  ;
+    margin-top: 26px;
+    color: #746b5e;
+    font-size: 13px;
+    line-height: 1.6;
 }
 
 .termos u {
     cursor: pointer;
+    color: #2a9d8f;
+    text-decoration-color: #2a9d8f;
 }
 
-video {
-    width: 100%;
-    max-width: 900px;
-    height: auto;
+a:focus-visible,
+button:focus-visible,
+input:focus-visible {
+    outline: 3px solid #2a9d8f;
+    outline-offset: 2px;
+}
+
+/* ---------- LADO DA ILUSTRAÇÃO ---------- */
+
+.decoracaoEsquerdo {
+    width: 50%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #EFECE3;
+    border-left: 2px solid #163c3f;
 }
 
 .div-img {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    width: 100vw;
-}   
-
-.mensagemErro {
-    color: rgb(192, 7, 7);
-    font-family:"Roboto", sans-serif;
-    font-size: 14px;
-    margin-left: 8.8%;
+    width: 100%;
+    padding: 6%;
 }
 
-.mensagem {
-    margin-top: -20px;
-    min-height: 24px;
+video {
+    width: 100%;
+    max-width: 1000px;
+    height: auto;
 }
 
-.divSair {
-    display: flex;
-    flex-direction: row;
-    width: 58px;
-    height: 25px;
-    padding: 10px;
-    background-color: #84B3ce;
-    justify-content: center;
-    align-items: center;
-    margin-left: 80px;
-    margin-top: 30px;
-    position: absolute;
-    border-radius: 15px;
-    transition: 0.3s;
-    cursor: pointer;
-} 
+/* ---------- RESPONSIVO ---------- */
 
-.divSair:hover {
-    background-color: #16587B;
-}
+@media (max-width: 900px) {
+    body {
+        flex-direction: column;
+    }
 
-.divSair a {
-    display: flex;
-    text-decoration: none;
-    color: #f5eedd;
-    font-family: "Roboto", sans-serif;
-}
+    .login,
+    .decoracaoEsquerdo {
+        width: 100%;
+    }
 
-.divSair a {
-     color: #f5eedd;
-    font-family: "Roboto", sans-serif;
+    .decoracaoEsquerdo {
+        min-height: 320px;
+        border-left: none;
+        border-top: 2px solid #163c3f;
+        order: -1;
+    }
+
+    .login {
+        padding: 0 7% 48px;
+    }
+
+    .cabecalho-login {
+        margin-top: 28px;
+    }
 }

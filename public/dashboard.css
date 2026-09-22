@@ -11,16 +11,20 @@ body{
     display: flex;
     height: 100vh;
     overflow: hidden;
+    background-color: inherit;
+    color: inherit;
 }
 
-#sidebar {
+.sidebar {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     background-color: inherit;
-    border-right: 1px solid #6b6b6b;
+    border-right: 1px solid #6b6b6b51;
     height: 100vh;
-    width: 34vh;
+    width: 40vh;
+    background-color: inherit;
+    color: inherit;
 }
 
 #sidebar_content {
@@ -44,7 +48,7 @@ body{
 #user_infos {
     display: flex;
     flex-direction: column;
-    color: var(--text);
+    
 }
 
 #user_infos span:last-child {
@@ -80,7 +84,7 @@ body{
     text-decoration: none;
     display: flex;
     align-items: center;
-    color: var(--text);
+    
     gap: 14px;
     font-size: 14px;
 }
@@ -113,7 +117,7 @@ body{
     text-align: start;
     cursor: pointer;
     background-color: transparent;
-    color: var(--text);
+    color: #0e0e0e;
 }
 
 #logout_btn_link {
@@ -146,17 +150,13 @@ main {
 
 .config-frase {
     padding-bottom: 25px;
-    color: var(--text);
+   
 }
 
 .tema {
     display: flex;
     gap: 8px;
     align-items: center;
-}
-
-.tema p {
-    color: var(--text);
 }
 
 .switch {
@@ -180,7 +180,7 @@ main {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: var(--bg);
+    
     border: 1px solid #333;
     transition: .4s;
     border-radius: 30px;
@@ -212,64 +212,14 @@ input:checked + .slider:before {
     background-color: #fff;
 }
 
-.modal-container {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: rgba(0, 0, 0, 0.4);
-    justify-content: center;
-    align-items: center;
-    z-index: 2000;
-}
-
-.modal-conteudo {
-    background-color: var(--bg);
-    color: var(--text);
-    padding: 25px;
-    border-radius: 12px;
-    width: 350px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
-}
-
-.modal-conteudo h3 {
-    margin-bottom: 15px;
-    color: var(--text);
-}
-
-.modal-conteudo input {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    outline: none;
-}
-
-.modal-btn {
-    display: flex;
-    justify-content: flex-end;
-    gap: 10px;
-}
-
-.btn-primario {
+.btn-primary {
     background-color: #16587b;
-    color: #ffffff;
-    border: none;
-    padding: 8px 16px;
-    border-radius: 6px;
-    cursor: pointer;
+    border-color: #16587b;
 }
 
-.btn-secundario {
-    background-color: transparent;
-    color: #6b6b6b;
-    border: 1px solid #6b6b6b;
-    padding: 8px 16px;
-    border-radius: 6px;
-    cursor: pointer;
+.btn-primary:hover {
+    background-color: #12475f;
+    border-color: #12475f;
 }
 
 .btn-flutuante {
@@ -280,7 +230,7 @@ input:checked + .slider:before {
     height: 55px;
     border-radius: 10px;
     background-color: #16587b;
-    color: var(--bg);
+    color: #f5eedd;
     font-size: 28px;
     border: none;
     cursor: pointer;
@@ -291,8 +241,8 @@ input:checked + .slider:before {
 }
 
 .btn-flutuante:hover {
-    background-color: #84b3ce;
-    color: #16587b;
+    background-color: #16587bbb;
+    color: #f5eedd;
 }
 
 .container-lista {
@@ -302,73 +252,6 @@ input:checked + .slider:before {
     flex-direction: column;
     gap: 12px;
     width: 100%;
-}
-
-.note_item {
-    display: flex;
-    align-items: center;
-    margin-bottom: 2px;
-}
-
-.note_item input[type="radio"] {
-    position: absolute;
-    opacity: 0;
-    width: 0;
-    height: 0;
-}
-
-.note_item label {
-    display: inline-flex;
-    align-items: center;
-    cursor: pointer;
-    position: relative;
-    user-select: none;
-    padding-left: 32px;
-    font-size: 16px;
-    color: var(--text);
-    border-top: 1px solid gray;
-    width: 100%;
-    padding-top: 10px;
-}
-
-.note_item label::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 14px;
-    height: 14px;
-    border: 2px dotted #0e0e0e;
-    border-radius: 50%;
-    background-color: transparent;
-    transition: all 0.2s ease;
-    margin-top: 5px;
-}
-
-.note_item label::after {
-    content: "\f00c";
-    font-family: "Font Awesome 6 Free", "Font Awesome 7 Free", "Font Awesome";
-    font-weight: 900;
-    display: inline-block;
-    position: absolute;
-    left: 0;
-    top: 50%;
-    width: 24px;
-    text-align: center;
-    font-size: 11px;
-    color: #ffffff;
-    transform: translateY(-50%) scale(0);
-    transition: transform 0.2s ease;
-}
-
-.note_item input[type="radio"]:checked + label::before {
-    background-color: #16587b;
-    border: 2px solid #0e0e0e;
-}
-
-.note_item input[type="radio"]:checked + label::after {
-    transform: translateY(-50%) scale(1);
 }
 
 .moldura {
@@ -393,8 +276,6 @@ input:checked + .slider:before {
 }
 
 .individual {
-    background-color: var(--bg);
-    color: var(--text);
     text-align: center;
     margin-top: 50px;
     margin-bottom: -25px;
