@@ -539,4 +539,22 @@ hr {
         flex-direction: column;
         gap: 28px;
     }
+    .selo-header{
+        display: none;
+    }
+    nav{
+        display: none;
+    }
+    .botao-secundario{
+        margin-bottom: 50px;
+    }
+    .texto-explicacao{
+        text-align: justify;
+    }
+    .imgt{
+        display: none;
+    }
+    .passo{
+        display: none;
+    }
 }

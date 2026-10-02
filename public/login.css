@@ -112,7 +112,6 @@ body {
 .cadastro {
     display: flex;
     flex-wrap: wrap;
-    margin-top: 8px;
     margin-bottom: 28px;
     align-items: center;
     gap: 6px;
@@ -300,26 +299,34 @@ video {
 
 @media (max-width: 900px) {
     body {
-        flex-direction: column;
+        justify-content: center;
     }
-
     .login,
     .decoracaoEsquerdo {
-        width: 100%;
+        width: auto;
     }
-
-    .decoracaoEsquerdo {
-        min-height: 320px;
-        border-left: none;
-        border-top: 2px solid #163c3f;
-        order: -1;
-    }
-
-    .login {
-        padding: 0 7% 48px;
-    }
-
     .cabecalho-login {
         margin-top: 28px;
+    }
+    .decoracaoEsquerdo{
+        display: none;
+    }
+    .divSair{
+        display: none;
+    }
+    .cabecalho-login{
+        padding-top: 100px;
+        justify-content: center;
+        align-items: center;
+    }
+    .saudacao{
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        margin-bottom: -10px;
+    }
+    .cadastro{
+        justify-content: center;
+        align-items: center;
     }
 }
