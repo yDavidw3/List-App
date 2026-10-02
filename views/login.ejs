@@ -1,48 +1,53 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.0/css/all.min.css" integrity="sha512-ApSLB1Pd3/bZN8fWB/RG9YhN/7bd9Hkf3AGaE2mPfebjrxagjuBtx2GcgdqIlJkUzwylBo61r9Xa9NmgBI0swA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.0/css/all.min.css"
+        integrity="sha512-ApSLB1Pd3/bZN8fWB/RG9YhN/7bd9Hkf3AGaE2mPfebjrxagjuBtx2GcgdqIlJkUzwylBo61r9Xa9NmgBI0swA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="/login.css">
     <title>Login</title>
     <style>
         body {
-            background-color: <%= cores.bg %> !important;
-            color: <%= cores.color %> !important;
+            background-color: <%=cores.bg %> !important;
+            color: <%=cores.color %> !important;
         }
 
         .titulo {
-            color: <%= temaAtual == 'escuro' ? '#f2b134' : '#163c3f' %> !important;
+            color: <%=temaAtual=='escuro' ? '#f2b134': '#163c3f' %> !important;
         }
 
         .saudacao {
-            color: <%= cores.color %> !important;
+            color: <%=cores.color %> !important;
         }
 
         .cadastro p {
-            color: <%= cores.color %> !important;
+            color: <%=cores.color %> !important;
         }
 
-        .cadastro a, .esqueceuSenha {
-            color: <%= temaAtual == 'escuro' ? '#f2b134' : '#2a9d8f' %> !important;
+        .cadastro a,
+        .esqueceuSenha {
+            color: <%=temaAtual=='escuro' ? '#f2b134': '#2a9d8f' %> !important;
         }
 
-        .cadastro a::after, .esqueceuSenha::after {
-            background-color: <%= temaAtual == 'escuro' ? '#f2b134' : '#2a9d8f' %> !important;
+        .cadastro a::after,
+        .esqueceuSenha::after {
+            background-color: <%=temaAtual=='escuro' ? '#f2b134': '#2a9d8f' %> !important;
         }
 
         label {
-            color: <%= temaAtual == 'escuro' ? '#cfc4ab' : '#746b5e' %> !important;
+            color: <%=temaAtual=='escuro' ? '#cfc4ab': '#746b5e' %> !important;
         }
 
         .termos {
-            color: <%= temaAtual == 'escuro' ? '#aaaaaa' : '#746b5e' %> !important;
+            color: <%=temaAtual=='escuro' ? '#aaaaaa': '#746b5e' %> !important;
         }
     </style>
 </head>
-<body>
 
+<body>
     <section class="login">
 
         <div class="divSair">
@@ -55,7 +60,8 @@
         <div class="cabecalho-login">
             <span class="logo-icone">
                 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M5 12.5L9.5 17L19 7" stroke="#163c3f" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M5 12.5L9.5 17L19 7" stroke="#163c3f" stroke-width="3" stroke-linecap="round"
+                        stroke-linejoin="round" />
                 </svg>
             </span>
             <h1 class="titulo">List App</h1>
@@ -85,15 +91,19 @@
 
             <div class="mensagem">
                 <% if(mensagem) { %>
-                    <p class="mensagemErro"><%= mensagem %></p>
-                <% } %>
+                    <p class="mensagemErro">
+                        <%= mensagem %>
+                    </p>
+                    <% } %>
             </div>
 
             <button type="submit">Entrar</button>
 
             <a href="" class="esqueceuSenha">Esqueceu sua senha?</a>
 
-            <p class="termos">Ao continuar com o e-mail, você está concordando com os <u title="Termos de Serviço">Termos de Serviço</u> e <u title="Política de Privacidade">Política de Privacidade</u> do List App.</p>
+            <p class="termos">Ao continuar com o e-mail, você está concordando com os <u
+                    title="Termos de Serviço">Termos de Serviço</u> e <u title="Política de Privacidade">Política de
+                    Privacidade</u> do List App.</p>
 
         </form>
 
@@ -122,4 +132,5 @@
     </script>
 
 </body>
+
 </html>
